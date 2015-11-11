@@ -1,0 +1,96 @@
+<?php
+   $heroPadding = ( $this->deviceType == 'computer' ) ? GALLERY_HERO_PADDING : ( ( $this->deviceType == 'phone' ) ?   GALLERY_HERO_PADDING_PHONE : GALLERY_HERO_PADDING_TABLET ) ;
+//echo ( '<font color="#fff">' . $this->deviceType . '</font>' );
+//echo ( '<font color="#fff">' . $heroPadding . '</font>' );
+//$this->deviceType = 'phone';
+?>
+<!DOCTYPE html>
+<head>
+  <title>Natalie Walker, Photographer</title>
+  <?php 
+     date_default_timezone_set('America/Los_Angeles');
+     if ( !DEV_ENVIRONMENT ) { ?>
+  <link rel="stylesheet" type="text/css" media="screen" href="<?=T_HOME_URL;?>css/bundle.css?time=<? echo date ('ymdG');?>"/>
+  <? } else { ?>
+  <link rel="stylesheet" type="text/css" media="screen" href="<?=T_HOME_URL;?>css/critical.css"/>
+  <link rel="stylesheet" type="text/css" media="screen" href="<?=T_HOME_URL;?>css/style.css"/>
+  <link rel="stylesheet" type="text/css" media="screen" href="<?=T_HOME_URL;?>css/gallery.css"/>
+  <link rel="stylesheet" type="text/css" media="screen" href="<?=T_HOME_URL;?>css/queries.css"/>
+  <? } ?>
+
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+  <style>
+    #herosContainer  {
+    padding: <?=$heroPadding;?>px;
+    }
+  </style>
+
+</head>
+<body ng-app="natApp" ng-controller="ApplicationController" class="{{currentState.name}} <?=$this->deviceType;?>">
+  <div id="globalContainer">
+
+    <div id="navContainer" ng-class="{ 'visible-menu' : showMenu, 'hidden-menu' : !showMenu }" nav-container-position="" own-width="nav" hitch-to="contentContainer" ng-mouseover="toggleMenu( true )" ng-mouseleave="toggleMenu( false )">
+      <div id="logo-mini">
+        <h1>NATALIE<br/>WALKER</h2>
+<img src="<?=T_HOME_URL;?>images/logo-mini-icon.png" id="logo-mini-icon"/>
+<div id="logo-mini-bg">&nbsp;</div>
+</div>
+<? include ( T_TEMPLATES_DIR . '/nav.html' ); ?>
+</div><!--end navContainer-->
+
+<div id="contentContainer">
+  <div ui-view></div>
+  <?php  //include ( $this->content_templates[ 0 ] ); ?>
+</div><!--end contentContainer-->
+
+</div><!--end globalContainer-->
+
+<script>
+  var NatWalkerAppSettings = {
+  imageIds: <?php echo json_encode( $this->gallery->imageIds );?>,
+  imageData: [],
+  firstHeroId: <?php echo json_encode( $this->gallery->heroId );?>,
+  ajaxUrl: '<?=T_HOME_URL;?>ajax',
+  jumpToId: '<?=$this->jumpToId;?>',
+  homeUrl: '<?=T_HOME_URL;?>',
+  resizedUrl: '<?=REL_RESIZED_DIR;?>',
+  galleryThumbResizeWidth: '<?=GALLERY_THUMB_RESIZE_WIDTH;?>',
+  galleryThumbResizeHeight: '<?=GALLERY_THUMB_RESIZE_HEIGHT;?>',
+  galleryThumbMarginRight: '<?=GALLERY_THUMB_MARGIN_RIGHT;?>',
+  galleryThumbMarginBottom: '<?=GALLERY_THUMB_MARGIN_BOTTOM;?>',
+  ieVersion: parseInt('<?=$this->ieVersion;?>'),
+  heroPadding: <?=$heroPadding;?>,
+  deviceType: '<?=$this->deviceType;?>',
+  maxRetainedHeros: <?=MAX_RETAINED_HEROS;?>,
+  heroDirectory: '1024h',
+  emptyVar: 'empty'
+  };
+</script>
+
+<?php 
+   if ( !DEV_ENVIRONMENT ) { ?>
+<script src="<?=T_HOME_URL;?>js/bundle.js?time=<? echo date ('ymdG');?>"></script>
+
+<? } else { ?> 
+<script src="<?=T_HOME_URL;?>libs/1.4.4.angular.min.js"></script>
+<script src="<?=T_HOME_URL;?>libs/0.2.15.angular-ui.router.min.js"></script>
+
+<script src="<?=T_HOME_URL;?>angular-modules/app/natApp.js"></script>
+<script src="<?=T_HOME_URL;?>angular-modules/app/js/controllers.js"></script>
+<script src="<?=T_HOME_URL;?>angular-modules/app/js/directives.js"></script>
+<script src="<?=T_HOME_URL;?>angular-modules/app/js/services.js"></script>
+<script src="<?=T_HOME_URL;?>angular-modules/app/js/filters.js"></script>
+<!--home-->
+<script src="<?=T_HOME_URL;?>angular-modules/home/homeModule.js"></script>
+<script src="<?=T_HOME_URL;?>angular-modules/home/js/controllers.js"></script>
+<!--folio-->
+<script src="<?=T_HOME_URL;?>angular-modules/folio/folioModule.js"></script>
+<script src="<?=T_HOME_URL;?>angular-modules/folio/js/services.js"></script>
+<script src="<?=T_HOME_URL;?>angular-modules/folio/js/controllers.js"></script>
+<script src="<?=T_HOME_URL;?>angular-modules/folio/js/filters.js"></script>
+<script src="<?=T_HOME_URL;?>angular-modules/folio/js/directives.js"></script>
+
+<? } ?> 
+
+</body>
+</html>

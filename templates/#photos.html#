@@ -1,0 +1,126 @@
+<div id="galleryRadioDiv">
+  <!-- <form name="galleryRadioForm" id="galleryRadioForm" action="" method="POST"> -->
+  <?php
+     foreach ( $this->galleryList as $k=>$v ) 
+  {
+  echo '<div class="galleryRadioDivUnit">';
+    echo ( '<b>' . strtoupper ($v [ 'section_name' ] ) . '</b>' );
+    echo '</div>';
+  foreach ( $v [ 'subsects' ] as $k2=>$v2 ) {
+
+
+  $ischecked = ( strtolower ( $v2 [ 'section_name' ] ) == $this->s ['3'] ) ? 'checked="checked"' : '';
+
+  echo '<div class="galleryRadioDivUnit">';
+    $link= T_HOME_URL . 'cms/photos/' . strtolower ( $v ['section_name']  ) . '/' . strtolower ( $v2 ['section_name'] ) ;
+    echo '<input type="radio" ' . $ischecked . ' name="' . $v2 [ 'section_id' ] . '" group="galleryRadio" onClick="location.href=\'' . $link . '\'"/>';
+    echo '<a href="' . $link . '"><label for="' . $v2 [ 'section_id' ] . '">' . $v2 [ 'section_name' ] . '</label></a>';
+    echo '</div>';
+
+
+  }
+
+  }
+  echo '<div class="clear"></div>';
+  ?>
+  <!-- </form> -->
+</div>
+
+
+<?php if ( $this->cur_gallery_id ) { ?>
+
+<div id="image_upload_form">
+  <form name="newad" method="post" enctype="multipart/form-data">
+    <div id="image_upload_form_copy">
+      Upload a Photo to <b><?=strtoupper( $this->cur_section_name );?></b>
+    </div>
+
+    <div>
+      <input type="hidden" name="gallery_id" value="<?=$this->cur_gallery_id;?>">
+      <!-- <input type="file" name="image0" id="image0"> -->
+      <input type="file" name="files[]" id="image0" multiple="multiple">
+    </div>
+    <div id="uploadSubmitCont">
+      <input id="uploadSubmit" name="Submit" type="submit" value="Upload image">
+      <span id="uploadingCopy">Uploading...</span>
+    </div>
+
+    <div class="clear"></div>
+
+  </form>
+
+</div>
+<? if ( sizeOf ( $this->confirm_msg) > 0 ) { 
+foreach ( $this->confirm_msg as $k=>$v ) {
+echo '<div class="confirmMsg">'; 
+  echo '<p>' . $v . '</p>';
+  echo '</div>';
+}
+} ?>
+
+
+<? if ( sizeOf ( $this->upload_error) > 0 ) { 
+foreach ( $this->upload_error as $k=>$v ) {
+echo '<div class="uploadError">'; 
+  echo '<p>' . $v . '</p>';
+  echo '</div>';
+}
+} ?>
+
+<div id="cms_folio_images">
+  <?php
+     foreach ( $this->galleryImages as $k=>$v )
+  {
+  if ( $v [ 'image_id' ] != '' ) 
+  {
+  $id = $v [ 'image_id' ];
+  $caption = $v [ 'image_caption' ];
+
+  $active_class='inactive';
+  if ( $v [ 'active_status' ] == '1' ) { 
+  $active_class='active'; 
+  }
+  
+  ?>
+  <div class="cms_folio_item <?=$active_class;?>" id="item_<?=$v [ 'image_id' ];?>">
+    <div class="cms_folio_image">
+      <? //echo img::getInstance()->getImage ( $v [ 'image_id' ], false, CMS_THUMB_HEIGHT );?>
+      <? echo $v [ 'image_id' ];?>
+    </div>
+    <div class="cms_folio_drag">
+      <p>DRAG</p>
+    </div>
+    <div class="cms_folio_caption left">
+      <div class="caption_display_div" id="capDisp_<?=$v['image_id'];?>">
+        <p class="capDispP" id="capDispP_<?=$v['image_id'];?>"><?=$caption;?></p><p><a href="#" class="editCaption" id="editCap_<?=$id;?>">Edit</a></p>
+      </div>
+      <input type="text" id="capInp_<?=$v['image_id'];?>" value="<?=$caption;?>"/>
+
+    </div>
+
+    <div class="cms_folio_extras">
+      <div id="status_<?=$v['image_id'];?>" class="active_status <?=$active_class;?>"><p><?=strtoupper($active_class);?></p></div>
+      <div class="deleteRow" id="deleteRow_<?=$v['image_id'];?>">
+        <div id="delete_<?=$v['image_id'];?>" class="delete unarmed"><p>DELETE</p></div>
+        <div class="clear"></div>
+
+
+      </div>
+      <div id="msg_<?=$v['image_id'];?>" class="msgRow"></div>
+
+
+    </div>
+    <div class="viewLiveDiv left" id="viewLive_<?=$v['image_id'];?>">
+      <a class="viewLive" href="<?=T_HOME_URL;?><?=$this->s [ '1' ];?>/<?=$this->s [ '2' ];?>/<?=$id;?>">&lt; View Live</a>
+    </div>
+
+    <div class="clear">
+    </div>
+
+  </div>
+  <?
+     }
+     }
+     }
+     ?>
+</div>

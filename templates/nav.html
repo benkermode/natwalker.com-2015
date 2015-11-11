@@ -1,0 +1,36 @@
+<div id="nav">
+
+  <div id="logo">
+    <a ng-href="/"><!--<a href="<?=T_HOME_URL;?>">-->
+      <h1>NATALIE<br/>WALKER</h1>
+      <h2>PHOTOGRAPHER</h2>
+    </a>
+  </div>
+  <!--end logo-->
+
+  <div id="nav-items-cont">
+    <div class="nav-section" ng-repeat="section in sections" ng-show="section.active=='1'">
+      <a ui-sref="{{section.section_name}}">
+        <div id="main-nav-item-{{section.section_name}}" ui-sref-active="selected" class="main-nav-item">
+          <div class="nav-link"><span>{{ section.section_name  | navfilter }}</span></div>
+        </div>
+      </a>
+      <!-- <div class="nav-subsection" id="sub-nav-cont" ng-class="( section.subsections && ( currentState.url.indexOf ( section.section_name ) != -1 )) ? 'show' : 'hide'"> -->
+      <div class="nav-subsection" id="sub-nav-cont">
+        <!-- <a ng-repeat="subsection in section.subsections" ui-sref="{{subsection.section_name}}" ui-sref-active="selected"> -->
+        <a ng-repeat="subsection in section.subsections" ng-href="#/folio/{{subsection.section_name}}" ui-sref-active="selected">
+          <div class="sub-nav-item <?=$v[ 'selected' ];?>">
+            <div class="sub-nav-link"><span>{{ subsection.section_name  | navfilter }}</span></div>
+          </div>
+        </a>
+      </div><!--end sub-nav-cont-->
+    </div><!--end section-->
+
+  </div><!--end nav-items-cont-->
+
+</div><!--end nav-->
+
+
+<div id="hide-nav">
+  <img src="<?=T_HOME_URL;?>images/arrow-left.png" id="arrow-hide-nav" width="24" height="24"/>
+</div>

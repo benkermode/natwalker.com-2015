@@ -1,0 +1,7 @@
+#arbitrary first line comment to make sure git is reading this
+media/*
+js/*
+images/*
+libs/*
+.gitignore-master
+.gitignore-public

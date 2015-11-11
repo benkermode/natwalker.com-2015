@@ -1,0 +1,140 @@
+/*critical.css*/
+.clear {
+    clear: both;
+}
+div {
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;  
+}
+div, span, img {
+    -moz-user-select: none; 
+    -khtml-user-select: none; 
+    -webkit-user-select: none; 
+    -o-user-select: none; 
+}
+* {
+    margin: 0;
+    padding: 0;
+}
+html, body {
+    width: 100%;
+}
+html, body, #Container, #content {
+    height: 100%;
+}
+body {
+    background-color: #000;
+    margin: 0px;
+    padding: 0px;
+}
+img {
+    border: 0;
+}
+#globalContainer {
+    width: 100%;
+    height: 100%;
+    min-width: 320px;
+    text-align: center;
+}
+#nav a {
+    text-decoration: none;
+}
+#logo {
+    position: relative;
+    /*left was 34px when nav was 200px wide*/
+    left: 18px;
+    margin: 12px 0 20px 0;
+}
+#nav h1, #nav h2 {
+    color: #fff;
+}
+#nav h1 {
+    font-size: 28px;
+    line-height: 24px;
+}
+#nav h2 {
+    font-size: 14px;
+    position: relative;
+    left: 2px;
+}
+
+.main-nav-item {
+    height: 30px;
+    font-size: 14px;
+    font-weight: bold;
+    color: #fff;
+    /* border-bottom: 1px solid #f3f3f3; */
+    border-top: 1px solid #000;
+    border-bottom: 1px solid #000;
+}
+#main-nav-item-0 {
+
+}
+.main-nav-item:hover {
+    background-color: #333;
+    color: #fff;
+}
+.main-nav-item.selected {
+    /* background-color: #454545; */
+    /* color: #fff; */
+    background-color: #ccc;
+    color: #000;
+    border-top: 1px solid #666;
+    border-bottom: 1px solid #666;
+    font-weight: bold;
+}
+.nav-link span {
+    position: relative;
+    /* left: 34px; when nav was 200px wide*/
+    left: 18px;
+    top: 8px;
+}
+.sub-nav-link span {
+    position: relative;
+    /* left: 50px; when nav was 200px wide*/
+    left: 34px;
+    top: 8px;
+}
+#nav-items-cont {
+    margin: 0 0 24px 0;
+}
+#sub-nav-cont {
+    margin: 0;
+/* height: 0; */
+/* overflow: hidden; */
+}
+.sub-nav-item, #hide-nav {
+    height: 30px;
+    color: #fff;
+    font-size: 12px;
+    font-weight: normal;
+    border-top: 1px solid #000;
+    border-bottom: 1px solid #000;
+}
+.sub-nav-item:hover, #hide-nav:hover {
+    background-color: #333;
+    color: #fff;
+    cursor: pointer;
+}
+.sub-nav-item.selected {
+    background-color: #ccc;
+    color: #000;
+    border-top: 1px solid #666;
+    border-bottom: 1px solid #666;
+    font-weight: bold;
+}
+.nav-section {
+    height: auto;
+}
+.nav-subsection {
+    transition: height .5s ease-in-out;
+    overflow: hidden;
+}
+.nav-subsection.show {
+    height: auto;
+}
+.nav-subsection.hide {
+    height: 0px;
+}
+

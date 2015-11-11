@@ -1,0 +1,13 @@
+/*bug in ie makes the relative path from the element document, not the css file*/
+.cursor-default {
+    cursor: default;
+}
+.cursor-middle {
+    cursor: url('../images/hero-middle.cur'), auto;
+}
+.cursor-right {
+    cursor: url('../images/hero-right.cur'), auto;
+}
+.cursor-left {
+    cursor: url('../images/hero-left.cur'), auto;
+}

@@ -1,0 +1,16 @@
+RewriteEngine On
+
+#mod rewrite only attempts to match the URI: the string between the domain and '?', if any. request_uri starts with "/"
+#wrapping an expression in brackets stores it as an atom, wchich can be retrieved via $1, $2, $3, etc
+#apache 1 requires leading slash, apache 2 forbids it, cover both with ^/? (0 or 1 "/")
+
+#rule below: $0 = request_uri, $1 = $_GET['g0'], $3 = $_GET['g1']
+# 0 or more: *    1 or more: +    0 or 1: ?  
+
+#new rule for apache 1 and 2
+RewriteRule ^/?([A-Za-z0-9-]+)(/*)([A-Za-z0-9-]*)(/*)([A-Za-z0-9-]*)(/*)([A-Za-z0-9-]*)/*$ index.php?g0=$1&g1=$3&g2=$5&g3=$7
+
+#orig rule
+#RewriteRule ^([A-Za-z0-9-]+)(/*)([A-Za-z0-9-]*)(/*)([A-Za-z0-9-]*)(/*)([A-Za-z0-9-]*)/?$ index.php?g0=$1&g1=$3&g2=$5&g3=$7 [NC,L]
+
+

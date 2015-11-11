@@ -1,0 +1,31 @@
+<div id="imagesLoadingGif" ng-hide="ImageFactory.images.length > 0">
+  <img src="images/loading.gif"/>
+</div>
+
+<div id="newHeroContainer" ng-show="HerosVisible">
+
+  <img ng-click="showHero ( false )" src="{{ GlobalData.homeUrl }}images/close-btn.png" id="hero-close-btn"/>
+  <div id="next-hero-container" ng-click="showHero ( true, 'next' )">
+    <div class="next-prev-hero-bg"></div>
+    <img src="{{ GlobalData.homeUrl }}images/hero-right.png" id="next-hero-btn"/>
+  </div>
+  <div id="prev-hero-container" ng-click="showHero ( true, 'prev' )">
+    <div class="next-prev-hero-bg"></div>
+    <img src="{{ GlobalData.homeUrl }}images/hero-left.png" id="prev-hero-btn"/>
+  </div>
+
+  <!--hero-->
+  <div class="heroitem {{heroData.aspect}}" center-me-from="newHeroContainer" ng-repeat="image in ImageFactory.images" ng-class="ImageFactory.curHeroIndex == $index ? 'curHero' : ( ImageFactory.prevHeroIndex == $index ? 'prevHero' : ( ImageFactory.nextHeroIndex == $index ? 'nextHero' : 'hiddenHero ') )">
+    <img  ng-src="{{image.hero.src}}" id="hero-{{image.id}}"/>
+  </div><!--heroitem-->
+
+</div><!--end newHeroContainer-->
+
+<!--thumbs-->
+<div id="innerContent" tile-gallery="fixedWidth" ng-show="!HerosVisible">
+
+  <div ng-click="showHero ( true, $index )" class="thumbitem"  ng-repeat="image in ImageFactory.images"><img  ng-src="{{image.thumb.src}}" id="thumb-{{image.id}}" width="{{image.thumb.width}}" height="{{image.thumb.height}}"/></div>
+
+</div><!--end newThumbsContainer-->
+
+

@@ -1,0 +1,51 @@
+.spit {
+    background-color: #cccc00;
+    color: #333;
+    border: 1 px solid: #ff0000;
+    padding: 20px;
+}
+#formDiv {
+}
+.contentCol #formDiv {
+    position: relative;
+    top: 40px;
+    left: 40px;
+}
+#formDiv .form_input {
+    float: left;
+    /* border: 1px solid #fff; */
+    width: 160px;
+}
+
+#formDiv .form_label {
+    float: left;
+    width: 180px;
+    margin-right: 40px;
+    text-align: left;
+}
+#formDiv .form_label label {
+    float: right;
+}
+.form_element {
+    margin-top: 16px;
+width: 480px;
+}
+#formDiv input[type=text], input[type=password], #formDiv textarea {
+    width: 160px;
+}
+#formDiv input[type=submit] {
+    width: 100px;
+}
+#formDiv textarea {
+    height: 100px;
+}
+#formDiv input.error, #formDiv textarea.error {
+    background-color: #ffa;
+    border: 1px solid #faa;
+}
+#formDiv label.error {
+    color:#f00;
+}
+#formDiv label.error:after {
+content: '*';
+}

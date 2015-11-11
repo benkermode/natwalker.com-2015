@@ -1,0 +1,42 @@
+<div id="formDiv">
+<form name="<?=$this->fdata['name'];?>" action="<?=$this->fdata['action'];?>" method="post">
+<input type="hidden" name="<?=$this->fdata['name'];?>_submitted" value="1"/>
+
+    <?    foreach ( $this->fdata['elements'] as $k => $v ) { ?>
+
+  <div class="form_element">
+      <div class="form_label">
+        <label for="<?=$k;?>" class="<?=$v['class'];?>">
+          <?=$v['label'];?>
+        </label>
+      </div>
+
+      <div class="form_input">
+        <? if ( $v['type'] == 'textarea' ) { ?>
+        <textarea name="<?=$k;?>" class="<?=$v['class'];?>">
+          <?=$_POST [ $k ];?>
+        </textarea>
+        <? } elseif ( $v['type'] == 'text' ) { ?>
+        <input type="text" name="<?=$k;?>" class="<?=$v['class'];?>" value="<?=$_POST [ $k ];?>"/>
+        <? } elseif ( $v['type'] == 'email' ) { ?>
+        <input type="text" name="<?=$k;?>" class="<?=$v['class'];?>" value="<?=$_POST [ $k ];?>"/>
+        <? } elseif ( $v['type'] == 'password' ) { ?>
+        <input type="password" name="<?=$k;?>" class="<?=$v['class'];?>" value="<?=$_POST [ $k ];?>"/>
+        <? } ?>
+      </div>
+      <div class="clear"></div>
+    </div>
+
+<? } ?>
+    <div class="form_element">
+      <div class="form_label">
+&nbsp;
+      </div>
+      <div class="form_input">
+        <input type="submit" value="Submit"/>
+      </div>
+      <div class="clear"></div>
+    </div>
+
+  </form>
+</div>

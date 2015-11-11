@@ -1,0 +1,55 @@
+<div id="innerContent" move-nav="wait">
+  <div id="formDiv">
+    <h1>Contact Natalie</h1>
+
+<div id="emailSendingGif" ng-show="emailSending">
+<img src="images/loading.gif"/>
+</div>
+
+<div id="emailSuccess" ng-show="emailSuccess">
+Your message has been sent. Thanks!
+</div>
+
+    <form id="contactForm" name="contactForm" novalidate ng-submit="submit()" ng-show="!emailSending && !emailSuccess">
+
+      <div class="form-row">
+        <label for="name" class="">Name</label>
+        <input type="text" name="name" ng-model="contact.name" ng-required="true" class="form-control" id="name" placeholder="Name" ng-class="{ 'has-error' : ( contactFormSubmitted || contactForm.name.$dirty ) && contactForm.name.$invalid }">
+        <div class="error-message"><span ng-show="( contactFormSubmitted || contactForm.name.$dirty ) && contactForm.name.$invalid">Name is required</span></div>
+      </div>
+<!--note the ng-required: the $scope.contact object is totally different to $scope.contactForm: the latter is filled with a ton of angular validation props, not form values-->
+      <div class="form-row">
+        <label for="email" class="">Email</label>
+        <input type="email" name="email" ng-model="contact.email" ng-required="!contact.phone" class="form-control" id="email" placeholder="Email"  ng-class="{ 'has-error' : ( contactFormSubmitted || contactForm.email.$dirty ) && contactForm.email.$invalid }">
+        <div class="error-message"><span ng-show="( contactFormSubmitted || contactForm.email.$dirty ) && contactForm.email.$invalid">Valid email (or phone) is required</span></div>
+      </div>
+
+      <div class="form-row">
+        <label for="phone" class="">Phone</label>
+        <input type="phone" name="phone" ng-model="contact.phone" ng-required="!contact.email" class="form-control" id="phone" placeholder="Phone"  ng-class="{ 'has-error' : ( contactFormSubmitted || contactForm.phone.$dirty ) && contactForm.phone.$invalid }">
+        <div class="error-message"><span ng-show="( contactFormSubmitted || contactForm.phone.$dirty ) && contactForm.phone.$invalid">Phone is required</span></div>
+      </div>
+
+      <div class="form-row">
+        <label for="message" class="">Message</label>
+        <textarea  name="message" ng-model="contact.message" ng-required="true" class="form-control" id="message" placeholder="Message"  ng-class="{ 'has-error' : ( contactFormSubmitted || contactForm.message.$dirty ) && contactForm.message.$invalid }"></textarea>
+        <div class="error-message"><span ng-show="( contactFormSubmitted || contactForm.message.$dirty ) && contactForm.message.$invalid">Message is required</span></div>
+      </div>
+
+      <div class="form-row">
+        <!--ng-disabled="contactForm.$invalid"-->
+        <button type="submit" class="btn btn-success" >SEND</button>
+      </div>
+
+      &nbsp;<br>
+
+      <div class="error-message" id="emailSendError" ng-show="emailSendError && !emailSending">
+        There was a problem sending your message. Please try again.
+      </div>
+
+      &nbsp;<br>
+    </form>
+
+  </div><!--end #formDiv-->
+</div><!--end #contentCol-->
+

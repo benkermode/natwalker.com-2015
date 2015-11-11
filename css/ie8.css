@@ -1,0 +1,35 @@
+#thumbsIcon, #arrowRight, #arrowLeft
+{
+    opacity: 1;
+}
+#globalContainer {
+width: 960px;
+margin: auto;
+border: 1px solid #666;
+}
+/*ie8 requires you set height and width to auto with using max-height and max-width*/
+#herosContainer img.portrait {
+height: auto;
+}
+#herosContainer img.landscape {
+width: auto;
+}
+#contentContainer {
+    float: left;
+    width: 80%;
+}
+#navContainer {
+    float: left;
+    width: 19%;
+    border-right: 1px solid #ccc;
+}
+/*no need to clear this on mobile version: no floats*/
+#sometimes-clear {
+clear: both;
+}
+    #logo-mini {
+        display: none;
+    }
+#globalContainer {
+    position: relative;
+}
