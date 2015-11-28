@@ -7,7 +7,7 @@ Photography Portfolio Site, originally built in raw OO JS. The client requested 
 /angular-modules contains all AngularJS code. There is a clear file and directory structure for modules. On production, however, all these files are gulped, concatenated and minified to a single *bundle.js*.
 
 ### CheckThumbColumns service
-The **CheckThumbColumns** Service (**/angular-modules/folio/js/services.js**) is responsible for setting up several matchMedia functions, which can re-tile the photography images based on changing screen-width. MediaWatch eliminates the need for an expensive, recurring window.onResize. The media query events are the main reason to externalise the DOM Manipulation in a Service, not a Directive (though the Directive can and must call the Service).
+The **CheckThumbColumns** Service [services.js](angular-modules/folio/js/services.js) is responsible for setting up several matchMedia functions, which can re-tile the photography images based on changing screen-width. MediaWatch eliminates the need for an expensive, recurring window.onResize. The media query events are the main reason to externalise the DOM Manipulation in a Service, not a Directive (though the Directive can and must call the Service).
 This Service must handle various logic internally, including the fact that the load order of a ui-router template, and async data from the DB is unpredictable: it must handle all situations: the DOM and the data must be ready. 
 
 ### ImageFactory service
